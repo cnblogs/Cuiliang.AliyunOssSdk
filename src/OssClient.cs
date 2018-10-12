@@ -51,6 +51,35 @@ namespace Cuiliang.AliyunOssSdk
         }
 
         /// <summary>
+        /// 列出bucket下的object
+        /// </summary>
+        /// <param name="bucketInfo"></param>
+        /// <param name="prefix"></param>
+        /// <param name="marker"></param>
+        /// <param name="maxKeys"></param>
+        /// <param name="delimiter"></param>
+        /// <param name="encodingType"></param>
+        /// <returns></returns>
+        public async Task<OssResult<GetBucketResult>> GetBucketAsync(BucketInfo bucketInfo,
+            string prefix,
+            string marker,
+            int maxKeys = 100,
+            string delimiter = "",
+            string encodingType = "")
+        {
+            var cmd = new GetBucketCommand(_requestContext, bucketInfo, prefix, marker, maxKeys, delimiter, encodingType);
+
+            var result =  await cmd.ExecuteAsync(_client);
+
+            if (!result.IsSuccess)
+            {
+                _logger.LogError($"Failed in OssClient.{nameof(GetBucketAsync)}(). \nBucket: {bucketInfo.BucketName}\n");
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 上传文件
         /// </summary>
         /// <param name="bucket"></param>
@@ -201,7 +230,7 @@ namespace Cuiliang.AliyunOssSdk
         {
             var cmd = new DeleteObjectCommand(_requestContext, bucket, key);
 
-            var result = await cmd.ExecuteAsync(_client);
+            var result  = await cmd.ExecuteAsync(_client);
 
             if (!result.IsSuccess)
             {
