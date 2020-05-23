@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -58,11 +59,14 @@ namespace Cuiliang.AliyunOssSdk
         /// <returns></returns>
         public async Task<OssResult<PutObjectResult>> PutObjectAsync(BucketInfo bucket, string key, RequestContent file, IDictionary<string, string> extraHeaders = null)
         {
+            if (key.StartsWith("/"))
+                throw new ArgumentException($"{nameof(key)} can not start with '/'");
+
             var cmd = new PutObjectCommand(_requestContext, bucket, key, file, extraHeaders);
 
             var result = await cmd.ExecuteAsync(_client);
 
-            if(!result.IsSuccess)
+            if (!result.IsSuccess)
             {
                 _logger.LogError($"Failed in OssClient.{nameof(PutObjectAsync)}(). \nBucket: {bucket.BucketName}\nPath: {key}");
             }
@@ -197,7 +201,7 @@ namespace Cuiliang.AliyunOssSdk
         {
             var cmd = new DeleteObjectCommand(_requestContext, bucket, key);
 
-            var result  = await cmd.ExecuteAsync(_client);
+            var result = await cmd.ExecuteAsync(_client);
 
             if (!result.IsSuccess)
             {
