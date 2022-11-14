@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <PackageId>aliyun.sdk.oss</PackageId>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Description>Aliyun OSS SDK for .NET Core</Description>
-    <PackageTags>aliyun</PackageTags>
-    <Authors>Cuiliang</Authors>
-    <PackageProjectUrl>https://github.com/cnblogs/Cuiliang.AliyunOssSdk</PackageProjectUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>aliyun.sdk.oss</PackageId>
+		<TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
+		<Description>Aliyun OSS SDK for .NET Core</Description>
+		<PackageTags>aliyun</PackageTags>
+		<Authors>Cuiliang</Authors>
+		<PackageProjectUrl>https://github.com/cnblogs/Cuiliang.AliyunOssSdk</PackageProjectUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 </Project>
