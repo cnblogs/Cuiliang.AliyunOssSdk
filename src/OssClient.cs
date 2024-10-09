@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Cuiliang.AliyunOssSdk.Api;
+using Cuiliang.AliyunOssSdk.Api.Bucket.Get;
 using Cuiliang.AliyunOssSdk.Api.Bucket.List;
 using Cuiliang.AliyunOssSdk.Api.Object.Append;
 using Cuiliang.AliyunOssSdk.Api.Object.Copy;
