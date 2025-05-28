@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Cuiliang.AliyunOssSdk.Api;
 using Cuiliang.AliyunOssSdk.Api.Bucket.List;
+using Cuiliang.AliyunOssSdk.Api.Object;
 using Cuiliang.AliyunOssSdk.Api.Object.Append;
 using Cuiliang.AliyunOssSdk.Api.Object.Copy;
 using Cuiliang.AliyunOssSdk.Api.Object.Delete;
@@ -16,6 +17,7 @@ using Cuiliang.AliyunOssSdk.Api.Object.Get;
 using Cuiliang.AliyunOssSdk.Api.Object.GetMeta;
 using Cuiliang.AliyunOssSdk.Api.Object.Head;
 using Cuiliang.AliyunOssSdk.Api.Object.Put;
+using Cuiliang.AliyunOssSdk.Api.Object.PutAcl;
 using Cuiliang.AliyunOssSdk.Entites;
 using Cuiliang.AliyunOssSdk.Request;
 using Cuiliang.AliyunOssSdk.Utility;
@@ -141,6 +143,11 @@ namespace Cuiliang.AliyunOssSdk
             return await PutObjectAsync(bucket, key, file, extraHeaders);
         }
 
+        public async Task<OssResult<EmptyResult>> PutObjectAclAsync(BucketInfo bucket, string key, string acl)
+        {
+            var command = new PutObjectACLCommand(_requestContext, bucket, key, acl);
+            return await command.ExecuteAsync(_client);
+        }
 
         /// <summary>
         /// 复制对象
